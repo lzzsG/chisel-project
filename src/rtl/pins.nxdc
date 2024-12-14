@@ -1,0 +1,5 @@
+top=Top
+
+io_a SW0
+io_b SW1
+io_c LD0

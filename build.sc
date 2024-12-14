@@ -10,6 +10,8 @@ object playground extends ScalaModule { m =>
   // 指定 Mill 项目的源码路径
   override def millSourcePath = os.pwd
 
+  def printSourcePath = T { millSourcePath.toString }
+
   // 设置 Scala 版本
   override def scalaVersion = "2.13.15"
 
