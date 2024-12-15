@@ -1,6 +1,9 @@
 BUILD_DIR = ./top/sv_gen
 PRJ = top
 
+PATH_PREFIX ?= home/lzz/codes/Chisel/chisel-project/top
+PROCESS_SCRIPT = ./process_verilog.sh
+
 # 仿真器和顶层模块配置
 SIM ?= verilator                 # 使用 Verilator 作为仿真器
 TOPLEVEL ?= Top					 # 顶层模块名（你的 Verilog 模块名称）
@@ -94,3 +97,4 @@ mtest:
 
 mrun:
 	mill -i $(PRJ).runMain top.TopToV --target-dir $(BUILD_DIR)
+	@bash $(PROCESS_SCRIPT) $(RTL_DIR)/Top.sv $(PATH_PREFIX)

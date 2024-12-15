@@ -5,7 +5,7 @@ import _root_.circt.stage.ChiselStage
 
 /** Top module
   */
-class Top extends Module {
+class TopX extends Module {
   val io = IO(new Bundle {
     val a = Input(Bool())
     val b = Input(Bool())

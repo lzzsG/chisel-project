@@ -345,4 +345,4 @@ hs_err_pid*
 sv_gen
 obj_dir
 *.vcd
-
+test_run_dir
