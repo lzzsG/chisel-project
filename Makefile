@@ -1,5 +1,5 @@
-BUILD_DIR = ./build_sv
-PRJ = playground
+BUILD_DIR = ./top/sv_gen
+PRJ = top
 
 # 仿真器和顶层模块配置
 SIM ?= verilator                 # 使用 Verilator 作为仿真器
@@ -78,7 +78,7 @@ nvb: nvboard-bind mrun
 	@echo "Building NVBoard project..."
 	$(VERILATOR) -cc --exe --build \
 		--top-module $(TOPLEVEL) \
-		$(VERILOG_SOURCES) $(CXX_DIR)/main.cpp $(CXX_DIR)/auto_bind.cpp \
+		$(VERILOG_SOURCES) $(CXX_DIR)/main.cpp top/auto_bind.cpp \
 		--CFLAGS "$(CXXFLAGS)" \
 		--LDFLAGS "$(LDFLAGS)" \
 		-Mdir obj_dir

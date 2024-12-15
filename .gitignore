@@ -342,6 +342,6 @@ hs_err_pid*
 .metals
 .bloop
 .vscode
-build_sv
+sv_gen
 obj_dir
 *.vcd
