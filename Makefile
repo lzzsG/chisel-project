@@ -5,8 +5,8 @@ PRJ = top
 SIM ?= verilator                 # 使用 Verilator 作为仿真器
 TOPLEVEL ?= Top					 # 顶层模块名（你的 Verilog 模块名称）
 
-RTL_DIR := build_sv
-CXX_DIR := src/cxx
+RTL_DIR := top/sv_gen
+CXX_DIR := top/cxx
 WAVE_DIR := wave
 
 VERILOG_SOURCES = $(wildcard $(RTL_DIR)/*.sv)
@@ -71,14 +71,14 @@ wave: dir mrun
 
 nvboard-bind:
 	@echo "Generating NVBoard pin bindings..."
-	python3 $(NVBOARD_PIN_BIND_SCRIPT) src/rtl/pins.nxdc $(CXX_DIR)/auto_bind.cpp
+	python3 $(NVBOARD_PIN_BIND_SCRIPT) top/pins.nxdc $(CXX_DIR)/auto_bind.cpp
 	@echo "Pin bindings generated."
 
 nvb: nvboard-bind mrun
 	@echo "Building NVBoard project..."
 	$(VERILATOR) -cc --exe --build \
 		--top-module $(TOPLEVEL) \
-		$(VERILOG_SOURCES) $(CXX_DIR)/main.cpp top/auto_bind.cpp \
+		$(VERILOG_SOURCES) $(CXX_DIR)/main.cpp $(CXX_DIR)/auto_bind.cpp \
 		--CFLAGS "$(CXXFLAGS)" \
 		--LDFLAGS "$(LDFLAGS)" \
 		-Mdir obj_dir
